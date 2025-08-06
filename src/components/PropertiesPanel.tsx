@@ -54,41 +54,48 @@ const PropertiesPanel: React.FC = () => {
         <div className="grid grid-cols-3 gap-1">
           <button
             onClick={() => handleMove(0, -20)}
-            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center"
+            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center transition-colors"
+            title="Nach oben"
           >
             ⬆️
           </button>
           <button
             onClick={() => handleMove(-20, 0)}
-            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center"
+            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center transition-colors"
+            title="Nach links"
           >
             ⬅️
           </button>
           <button
             onClick={() => handleMove(20, 0)}
-            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center"
+            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center transition-colors"
+            title="Nach rechts"
           >
             ➡️
           </button>
           <button
             onClick={() => handleMove(0, 20)}
-            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center"
+            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center transition-colors"
+            title="Nach unten"
           >
             ⬇️
           </button>
           <button
             onClick={() => handleMove(-20, 20)}
-            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center"
+            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center transition-colors"
+            title="Links unten"
           >
             ↙️
           </button>
           <button
             onClick={() => handleMove(20, 20)}
-            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center"
+            className="p-2 bg-white/20 rounded hover:bg-white/30 text-center transition-colors"
+            title="Rechts unten"
           >
             ↘️
           </button>
         </div>
+        <p className="text-xs text-white/70">Tipp: Du kannst den Charakter auch mit der Maus ziehen!</p>
       </div>
 
       {/* Skalierung */}

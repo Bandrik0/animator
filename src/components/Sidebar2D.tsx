@@ -18,19 +18,19 @@ const Sidebar2D: React.FC = () => {
       {/* Avatar Charaktere */}
       <div>
         <h3 className="text-sm font-medium text-white/80 mb-2">Avatare</h3>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="flex flex-col gap-2">
           {avatarCharacters.map((char) => (
             <button
               key={char.name}
               onClick={() => addSprite(char)}
-              className="flex flex-col items-center gap-1 hover:bg-white/20 p-2 rounded transition-colors"
+              className="flex items-center gap-3 hover:bg-white/20 p-2 rounded transition-colors"
             >
               <img
                 src={char.thumbnail}
                 alt={char.name}
-                className="w-16 h-16 object-cover rounded"
+                className="w-12 h-12 object-cover rounded flex-shrink-0"
               />
-              <span className="text-xs text-center">{char.name}</span>
+              <span className="text-sm text-left flex-1">{char.name}</span>
             </button>
           ))}
         </div>
@@ -39,19 +39,19 @@ const Sidebar2D: React.FC = () => {
       {/* Animierte Charaktere */}
       <div>
         <h3 className="text-sm font-medium text-white/80 mb-2">Animiert</h3>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="flex flex-col gap-2">
           {animatedCharacters.map((char) => (
             <button
               key={char.name}
               onClick={() => addSprite(char)}
-              className="flex flex-col items-center gap-1 hover:bg-white/20 p-2 rounded transition-colors"
+              className="flex items-center gap-3 hover:bg-white/20 p-2 rounded transition-colors"
             >
-              <div className="w-16 h-16 rounded bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                <span className="text-white text-2xl">
+              <div className="w-12 h-12 rounded bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-xl">
                   {char.characterType === 'bob' ? '👨' : '👩'}
                 </span>
               </div>
-              <span className="text-xs text-center">{char.name}</span>
+              <span className="text-sm text-left flex-1">{char.name}</span>
             </button>
           ))}
         </div>
@@ -60,17 +60,17 @@ const Sidebar2D: React.FC = () => {
       {/* Roboter Charaktere */}
       <div>
         <h3 className="text-sm font-medium text-white/80 mb-2">Roboter</h3>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="flex flex-col gap-2">
           {robotCharacters.map((char) => (
             <button
               key={char.name}
               onClick={() => addSprite(char)}
-              className="flex flex-col items-center gap-1 hover:bg-white/20 p-2 rounded transition-colors"
+              className="flex items-center gap-3 hover:bg-white/20 p-2 rounded transition-colors"
             >
-              <div className="w-16 h-16 rounded bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center">
-                <span className="text-white text-2xl">🤖</span>
+              <div className="w-12 h-12 rounded bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-xl">🤖</span>
               </div>
-              <span className="text-xs text-center">{char.name}</span>
+              <span className="text-sm text-left flex-1">{char.name}</span>
             </button>
           ))}
         </div>
@@ -79,12 +79,12 @@ const Sidebar2D: React.FC = () => {
       {/* Hintergründe */}
       <div>
         <h3 className="text-sm font-medium text-white/80 mb-2">Hintergründe</h3>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           {backgrounds.map((bg) => (
             <button
               key={bg.name}
               onClick={() => useSpriteStore.getState().setBackground(bg.url)}
-              className="px-2 py-1 bg-white/20 rounded hover:bg-white/30 text-left capitalize text-sm transition-colors"
+              className="px-3 py-2 bg-white/20 rounded hover:bg-white/30 text-left capitalize text-sm transition-colors"
             >
               {bg.name}
             </button>
