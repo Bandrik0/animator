@@ -1,6 +1,10 @@
 import React from 'react';
 import Stage2D from './components/Stage2D';
 import Sidebar2D from './components/Sidebar2D';
+import PropertiesPanel from './components/PropertiesPanel';
+import Timeline from './components/Timeline';
+import ExportPanel from './components/ExportPanel';
+import HelpPanel from './components/HelpPanel';
 import MicControl from './components/MicControl';
 import RecordControl from './components/RecordControl';
 import GlobalPlayButton from './components/GlobalPlayButton';
@@ -17,9 +21,17 @@ const App: React.FC = () => {
       </div>
       <div className="flex flex-1">
         <Sidebar2D />
-        <main className="flex-1">
-          <Stage2D ref={canvasRef} />
+        <main className="flex-1 flex flex-col">
+          <div className="flex-1">
+            <Stage2D ref={canvasRef} />
+          </div>
+          <div className="flex">
+            <Timeline />
+            <ExportPanel />
+            <HelpPanel />
+          </div>
         </main>
+        <PropertiesPanel />
       </div>
     </div>
   );
