@@ -86,7 +86,7 @@ const HelpPanel: React.FC = () => {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg m-2">
+    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg border border-white/10 h-full">
       <h3 className="text-lg font-semibold mb-4">Hilfe & Tipps</h3>
       
       {/* Tabs */}

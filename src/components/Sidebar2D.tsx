@@ -4,10 +4,27 @@ import { backgrounds } from '../data/backgrounds';
 import { useSpriteStore } from '../store2d';
 import SpriteLine from './SpriteLine';
 
-const Sidebar2D: React.FC = () => {
+interface Sidebar2DProps {
+  className?: string;
+}
+
+const Sidebar2D: React.FC<Sidebar2DProps> = ({ className = '' }) => {
   const addSprite = useSpriteStore((s) => s.addSprite);
   const sprites = useSpriteStore((s) => s.sprites);
+  const select = useSpriteStore((s) => s.select);
   const [activeTab, setActiveTab] = useState<'characters' | 'backgrounds' | 'recorded'>('characters');
+
+  const handleAddCharacter = (char: any) => {
+    const newSpriteId = addSprite(char);
+    // Auto-select the new character
+    if (newSpriteId) {
+      select(newSpriteId);
+    }
+    // Auto-scroll to recorded tab to see the new character
+    setTimeout(() => {
+      setActiveTab('recorded');
+    }, 100);
+  };
 
   const avatarCharacters = spriteCharacters.filter(char => char.type === 'avatar');
   const animatedCharacters = spriteCharacters.filter(char => char.type === 'animated');
@@ -52,7 +69,7 @@ const Sidebar2D: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-gradient-to-br from-white/15 to-white/5 backdrop-blur text-white p-4 space-y-4 h-full overflow-y-auto border-r border-white/10">
+    <div className={`w-full bg-gradient-to-br from-white/15 to-white/5 backdrop-blur text-white p-4 space-y-4 h-full overflow-y-auto border-r border-white/10 ${className}`}>
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">🎭 Charaktere</h2>
         <div className="text-xs bg-white/10 px-2 py-1 rounded">
@@ -107,8 +124,10 @@ const Sidebar2D: React.FC = () => {
               {avatarCharacters.map((char) => (
                 <button
                   key={char.name}
-                  onClick={() => addSprite(char)}
+                  onClick={() => handleAddCharacter(char)}
+                  data-testid="add-character"
                   className="w-full flex items-center gap-3 hover:bg-white/10 p-3 rounded-lg transition-all duration-200 hover:scale-105 group"
+                  title={`${char.name} zur Szene hinzufügen`}
                 >
                   <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${getCharacterColor(char.type)} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-all`}>
                     <span className="text-white text-xl">
@@ -119,8 +138,8 @@ const Sidebar2D: React.FC = () => {
                     <div className="text-sm font-medium text-white/90">{char.name}</div>
                     <div className="text-xs text-white/60">Avatar</div>
                   </div>
-                  <div className="text-xs text-white/40 group-hover:text-white/60 transition-colors">
-                    +
+                  <div className="text-lg text-white/40 group-hover:text-white/60 transition-colors font-bold">
+                    ➕
                   </div>
                 </button>
               ))}
@@ -137,8 +156,10 @@ const Sidebar2D: React.FC = () => {
               {animatedCharacters.map((char) => (
                 <button
                   key={char.name}
-                  onClick={() => addSprite(char)}
+                  onClick={() => handleAddCharacter(char)}
+                  data-testid="add-character"
                   className="w-full flex items-center gap-3 hover:bg-white/10 p-3 rounded-lg transition-all duration-200 hover:scale-105 group"
+                  title={`${char.name} zur Szene hinzufügen`}
                 >
                   <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${getCharacterColor(char.type, char.characterType)} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-all`}>
                     <span className="text-white text-xl">
@@ -149,8 +170,8 @@ const Sidebar2D: React.FC = () => {
                     <div className="text-sm font-medium text-white/90">{char.name}</div>
                     <div className="text-xs text-white/60">Animiert</div>
                   </div>
-                  <div className="text-xs text-white/40 group-hover:text-white/60 transition-colors">
-                    +
+                  <div className="text-lg text-white/40 group-hover:text-white/60 transition-colors font-bold">
+                    ➕
                   </div>
                 </button>
               ))}
@@ -167,8 +188,10 @@ const Sidebar2D: React.FC = () => {
               {robotCharacters.map((char) => (
                 <button
                   key={char.name}
-                  onClick={() => addSprite(char)}
+                  onClick={() => handleAddCharacter(char)}
+                  data-testid="add-character"
                   className="w-full flex items-center gap-3 hover:bg-white/10 p-3 rounded-lg transition-all duration-200 hover:scale-105 group"
+                  title={`${char.name} zur Szene hinzufügen`}
                 >
                   <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${getCharacterColor(char.type)} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-all`}>
                     <span className="text-white text-xl">
@@ -179,8 +202,8 @@ const Sidebar2D: React.FC = () => {
                     <div className="text-sm font-medium text-white/90">{char.name}</div>
                     <div className="text-xs text-white/60">Roboter</div>
                   </div>
-                  <div className="text-xs text-white/40 group-hover:text-white/60 transition-colors">
-                    +
+                  <div className="text-lg text-white/40 group-hover:text-white/60 transition-colors font-bold">
+                    ➕
                   </div>
                 </button>
               ))}

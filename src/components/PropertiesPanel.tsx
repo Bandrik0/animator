@@ -1,7 +1,13 @@
 import React from 'react';
 import { useSpriteStore } from '../store2d';
 
-const PropertiesPanel: React.FC = () => {
+interface PropertiesPanelProps {
+  isVisible: boolean;
+  onToggle: () => void;
+  className?: string;
+}
+
+const PropertiesPanel: React.FC<PropertiesPanelProps> = ({ isVisible, onToggle, className = '' }) => {
   const selectedId = useSpriteStore((s) => s.selectedId);
   const sprites = useSpriteStore((s) => s.sprites);
   const updateSprite = useSpriteStore((s) => s.updateSprite);
@@ -11,9 +17,16 @@ const PropertiesPanel: React.FC = () => {
 
   if (!selectedSprite) {
     return (
-      <div className="w-full bg-gradient-to-br from-white/15 to-white/5 backdrop-blur text-white p-4 border-l border-white/10">
+      <div className={`w-full bg-gradient-to-br from-white/15 to-white/5 backdrop-blur text-white p-4 border-l border-white/10 transition-all duration-300 ${className} ${isVisible ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">⚙️ Eigenschaften</h2>
+          <button
+            onClick={onToggle}
+            className="lg:hidden p-2 hover:bg-white/20 rounded-lg transition-colors"
+            title="Eigenschaften schließen"
+          >
+            ✕
+          </button>
           <div className="text-xs bg-white/10 px-2 py-1 rounded">
             Keine Auswahl
           </div>
@@ -92,9 +105,16 @@ const PropertiesPanel: React.FC = () => {
   const colors = getCharacterColor();
 
   return (
-    <div className="w-full bg-gradient-to-br from-white/15 to-white/5 backdrop-blur text-white p-4 space-y-4 border-l border-white/10">
+    <div className={`w-full bg-gradient-to-br from-white/15 to-white/5 backdrop-blur text-white p-4 space-y-4 border-l border-white/10 transition-all duration-300 ${className} ${isVisible ? 'translate-x-0' : 'translate-x-full'}`}>
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">⚙️ Eigenschaften</h2>
+        <button
+          onClick={onToggle}
+          className="lg:hidden p-2 hover:bg-white/20 rounded-lg transition-colors"
+          title="Eigenschaften schließen"
+        >
+          ✕
+        </button>
         <div className="text-xs bg-white/10 px-2 py-1 rounded">
           Ausgewählt
         </div>

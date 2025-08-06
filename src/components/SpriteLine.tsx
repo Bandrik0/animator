@@ -68,6 +68,7 @@ const SpriteLine: React.FC<{ sprite: SpriteInstance }> = ({ sprite }) => {
 
   return (
     <div 
+      data-testid="sprite-line"
       className={`p-3 rounded-lg overflow-hidden transition-all duration-200 cursor-pointer border ${
         isSelected 
           ? 'bg-gradient-to-r from-white/20 to-white/10 ring-2 ring-yellow-400 ring-offset-2 ring-offset-gray-800 shadow-lg' 

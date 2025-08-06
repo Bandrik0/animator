@@ -104,7 +104,7 @@ const Timeline: React.FC = () => {
   }, [playing, totalDuration, playbackSpeed]);
 
   return (
-    <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur text-white p-4 rounded-lg m-2 border border-white/10">
+    <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur text-white p-4 rounded-lg border border-white/10 h-full">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold">🎵 Timeline</h3>
         <div className="flex items-center gap-2">

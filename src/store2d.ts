@@ -19,7 +19,7 @@ export interface SpriteInstance {
 
 interface SpriteState {
   sprites: SpriteInstance[];
-  addSprite: (def: SpriteCharacterDef) => void;
+  addSprite: (def: SpriteCharacterDef) => string;
   updateSprite: (id: string, p: Partial<SpriteInstance>) => void;
   deleteSprite: (id: string) => void;
   addClip: (id: string, url: string) => void;
@@ -34,21 +34,24 @@ interface SpriteState {
 
 export const useSpriteStore = create<SpriteState>((set) => ({
   sprites: [],
-  addSprite: (def) =>
+  addSprite: (def) => {
+    const id = nanoid();
+    const newSprite = {
+      id,
+      def,
+      x: Math.max(400, (window.innerWidth - 480) / 2), // Account for both sidebars
+      y: Math.max(300, (window.innerHeight - 120) / 2),
+      scale: 1,
+      clips: [],
+      audioLevel: 0,
+    };
+    
     set((s) => ({
-      sprites: [
-        ...s.sprites,
-        {
-          id: nanoid(),
-          def,
-          x: (window.innerWidth - 240) / 2,
-          y: (window.innerHeight - 60) / 2,
-          scale: 1,
-          clips: [],
-          audioLevel: 0,
-        },
-      ],
-    })),
+      sprites: [...s.sprites, newSprite],
+    }));
+    
+    return id;
+  },
   updateSprite: (id, p) =>
     set((s) => ({
       sprites: s.sprites.map((sp) => (sp.id === id ? { ...sp, ...p } : sp)),
