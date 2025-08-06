@@ -105,10 +105,10 @@ const Stage2D = forwardRef<HTMLCanvasElement>((props, ref) => {
   };
 
   return (
-    <Stage ref={ref as any} width={window.innerWidth - 240} height={window.innerHeight - 60} options={{ backgroundColor: 0x1e1e1e }}>
+    <Stage ref={ref as any} width={window.innerWidth - 320} height={window.innerHeight - 60} options={{ backgroundColor: 0x1e1e1e }}>
       {/* Background */}
       {bgUrl && (
-        <Sprite image={bgUrl} x={0} y={0} width={window.innerWidth - 240} height={window.innerHeight - 60} />
+        <Sprite image={bgUrl} x={0} y={0} width={window.innerWidth - 320} height={window.innerHeight - 60} />
       )}
       {sprites.map(renderCharacter)}
     </Stage>

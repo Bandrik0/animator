@@ -11,7 +11,7 @@ const PropertiesPanel: React.FC = () => {
 
   if (!selectedSprite) {
     return (
-      <aside className="w-60 bg-white/10 backdrop-blur text-white p-4">
+      <aside className="w-80 bg-white/10 backdrop-blur text-white p-4">
         <h2 className="text-xl font-semibold mb-4">Eigenschaften</h2>
         <p className="text-sm text-white/70">Wähle einen Charakter aus, um ihn zu bearbeiten</p>
       </aside>
@@ -37,7 +37,7 @@ const PropertiesPanel: React.FC = () => {
   };
 
   return (
-    <aside className="w-60 bg-white/10 backdrop-blur text-white p-4 space-y-4">
+    <aside className="w-80 bg-white/10 backdrop-blur text-white p-4 space-y-4">
       <h2 className="text-xl font-semibold">Eigenschaften</h2>
       
       {/* Charakter-Info */}

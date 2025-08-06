@@ -29,7 +29,7 @@ export const spriteCharacters: SpriteCharacterDef[] = [
     ],
   },
   {
-    name: 'Animated Bob',
+    name: 'Bob',
     type: 'animated',
     animated: true,
     characterType: 'bob',
@@ -37,7 +37,7 @@ export const spriteCharacters: SpriteCharacterDef[] = [
     frames: ['bob-1', 'bob-2', 'bob-3'],
   },
   {
-    name: 'Animated Lisa',
+    name: 'Lisa',
     type: 'animated',
     animated: true,
     characterType: 'lisa',

@@ -12,7 +12,7 @@ const Sidebar2D: React.FC = () => {
   const robotCharacters = spriteCharacters.filter(char => char.type === 'robot');
 
   return (
-    <aside className="w-60 bg-white/10 backdrop-blur text-white p-4 space-y-4 h-full overflow-y-auto">
+    <aside className="w-80 bg-white/10 backdrop-blur text-white p-4 space-y-4 h-full overflow-y-auto">
       <h2 className="text-xl font-semibold">Charaktere</h2>
       
       {/* Avatar Charaktere */}
@@ -30,7 +30,7 @@ const Sidebar2D: React.FC = () => {
                 alt={char.name}
                 className="w-12 h-12 object-cover rounded flex-shrink-0"
               />
-              <span className="text-sm text-left flex-1">{char.name}</span>
+              <span className="text-sm text-left flex-1 truncate" title={char.name}>{char.name}</span>
             </button>
           ))}
         </div>
@@ -51,7 +51,7 @@ const Sidebar2D: React.FC = () => {
                   {char.characterType === 'bob' ? '👨' : '👩'}
                 </span>
               </div>
-              <span className="text-sm text-left flex-1">{char.name}</span>
+              <span className="text-sm text-left flex-1 truncate" title={char.name}>{char.name}</span>
             </button>
           ))}
         </div>
@@ -70,7 +70,7 @@ const Sidebar2D: React.FC = () => {
               <div className="w-12 h-12 rounded bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-xl">🤖</span>
               </div>
-              <span className="text-sm text-left flex-1">{char.name}</span>
+              <span className="text-sm text-left flex-1 truncate" title={char.name}>{char.name}</span>
             </button>
           ))}
         </div>

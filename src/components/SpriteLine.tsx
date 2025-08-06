@@ -36,7 +36,7 @@ const SpriteLine: React.FC<{ sprite: SpriteInstance }> = ({ sprite }) => {
 
   return (
     <li 
-      className={`flex items-center gap-2 p-2 rounded overflow-hidden transition-all cursor-pointer ${
+      className={`flex items-center gap-2 p-2 rounded overflow-hidden transition-all cursor-pointer min-w-0 ${
         isSelected ? 'bg-white/20 ring-2 ring-yellow-400' : 'bg-white/10 hover:bg-white/15'
       }`}
       onClick={() => selectSprite(sprite.id)}
@@ -51,9 +51,9 @@ const SpriteLine: React.FC<{ sprite: SpriteInstance }> = ({ sprite }) => {
       
       {/* Charakter-Info */}
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium truncate">{sprite.def.name}</span>
-          <span className="text-xs text-white/70">({sprite.def.type})</span>
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="text-sm font-medium truncate flex-1" title={sprite.def.name}>{sprite.def.name}</span>
+          <span className="text-xs text-white/70 flex-shrink-0">({sprite.def.type})</span>
         </div>
         
         {/* Audio-Clips */}
