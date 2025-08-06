@@ -32,10 +32,15 @@ const SpriteLine: React.FC<{ sprite: SpriteInstance }> = ({ sprite }) => {
     return '👤';
   };
 
+  const selectSprite = useSpriteStore((s) => s.select);
+
   return (
-    <li className={`flex items-center gap-2 p-2 rounded overflow-hidden transition-all ${
-      isSelected ? 'bg-white/20 ring-2 ring-yellow-400' : 'bg-white/10'
-    }`}>
+    <li 
+      className={`flex items-center gap-2 p-2 rounded overflow-hidden transition-all cursor-pointer ${
+        isSelected ? 'bg-white/20 ring-2 ring-yellow-400' : 'bg-white/10 hover:bg-white/15'
+      }`}
+      onClick={() => selectSprite(sprite.id)}
+    >
       {/* Charakter-Icon */}
       <div 
         className="w-8 h-8 rounded flex items-center justify-center text-white text-lg"
