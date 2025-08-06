@@ -21,6 +21,7 @@ interface SpriteState {
   sprites: SpriteInstance[];
   addSprite: (def: SpriteCharacterDef) => void;
   updateSprite: (id: string, p: Partial<SpriteInstance>) => void;
+  deleteSprite: (id: string) => void;
   addClip: (id: string, url: string) => void;
   deleteClip: (spriteId: string, clipId: string) => void;
   moveClip: (spriteId: string, clipId: string, direction: -1 | 1) => void;
@@ -51,6 +52,11 @@ export const useSpriteStore = create<SpriteState>((set) => ({
   updateSprite: (id, p) =>
     set((s) => ({
       sprites: s.sprites.map((sp) => (sp.id === id ? { ...sp, ...p } : sp)),
+    })),
+  deleteSprite: (id) =>
+    set((s) => ({
+      sprites: s.sprites.filter((sp) => sp.id !== id),
+      selectedId: s.selectedId === id ? null : s.selectedId,
     })),
   addClip: (id, url) =>
     set((s) => ({
