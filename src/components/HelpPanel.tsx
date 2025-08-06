@@ -86,11 +86,11 @@ const HelpPanel: React.FC = () => {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg m-2">
-      <h3 className="text-lg font-semibold mb-4">Hilfe & Tipps</h3>
+    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg h-full flex flex-col">
+      <h3 className="text-lg font-semibold mb-4 flex-shrink-0">Hilfe & Tipps</h3>
       
       {/* Tabs */}
-      <div className="flex gap-1 mb-4">
+      <div className="flex gap-1 mb-4 flex-shrink-0">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -105,12 +105,12 @@ const HelpPanel: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="max-h-64 overflow-y-auto">
+      <div className="overflow-y-auto flex-1">
         {content[activeTab]}
       </div>
 
       {/* Quick Actions */}
-      <div className="mt-4 pt-4 border-t border-white/20">
+      <div className="mt-4 pt-4 border-t border-white/20 flex-shrink-0">
         <h4 className="font-medium mb-2">Schnell-Aktionen</h4>
         <div className="flex gap-2">
           <button className="px-2 py-1 bg-white/20 rounded text-xs hover:bg-white/30">

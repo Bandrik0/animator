@@ -17,8 +17,8 @@ const ExportPanel: React.FC = () => {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg m-2">
-      <h3 className="text-lg font-semibold mb-4">Export</h3>
+    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg h-full flex flex-col">
+      <h3 className="text-lg font-semibold mb-4 flex-shrink-0">Export</h3>
       
       {/* Format-Auswahl */}
       <div className="space-y-2 mb-4">

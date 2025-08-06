@@ -47,8 +47,8 @@ const Timeline: React.FC = () => {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg m-2">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg h-full flex flex-col">
+      <div className="flex items-center justify-between mb-4 flex-shrink-0">
         <h3 className="text-lg font-semibold">Timeline</h3>
         <div className="flex gap-2">
           <button
@@ -63,7 +63,7 @@ const Timeline: React.FC = () => {
       </div>
 
       {/* Timeline-Bereich */}
-      <div className="relative bg-white/5 rounded p-2 mb-4">
+      <div className="relative bg-white/5 rounded p-2 mb-4 flex-shrink-0">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-xs text-white/70">Zeit: {currentTime.toFixed(1)}s</span>
           <div className="flex-1 bg-white/10 rounded-full h-2">
@@ -108,12 +108,12 @@ const Timeline: React.FC = () => {
       </div>
 
       {/* Clip-Liste */}
-      <div className="space-y-2">
+      <div className="space-y-2 flex-1 min-h-0 flex flex-col">
         <h4 className="font-medium">Alle Audio-Clips ({allClips.length})</h4>
         {allClips.length === 0 ? (
           <p className="text-sm text-white/70">Keine Audio-Clips vorhanden</p>
         ) : (
-          <div className="space-y-1 max-h-32 overflow-y-auto">
+          <div className="space-y-1 overflow-y-auto flex-1">
             {allClips.map((clip, index) => (
               <div
                 key={clip.id}
