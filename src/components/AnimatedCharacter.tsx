@@ -28,6 +28,11 @@ const AnimatedCharacter: React.FC<AnimatedCharacterProps> = ({
   const legSwing = Math.sin(Date.now() * 0.008) * (audioLevel * 0.2);
   const bodyBob = Math.sin(Date.now() * 0.012) * (audioLevel * 0.1);
 
+  // Constrain audio waves to prevent overflow
+  const constrainedAudioLevel = Math.min(audioLevel, 0.8);
+  const waveRadius1 = Math.min(40 + constrainedAudioLevel * 20, 50);
+  const waveRadius2 = Math.min(50 + constrainedAudioLevel * 25, 60);
+
   // SVG für animierten Charakter
   const characterSVG = `
     <svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
@@ -60,10 +65,10 @@ const AnimatedCharacter: React.FC<AnimatedCharacterProps> = ({
       <ellipse cx="${75 + legSwing * 4}" cy="${270 + bodyBob * 2}" rx="15" ry="8" fill="#34495E" stroke="#2C3E50" stroke-width="1"/>
       <ellipse cx="${125 - legSwing * 4}" cy="${270 + bodyBob * 2}" rx="15" ry="8" fill="#34495E" stroke="#2C3E50" stroke-width="1"/>
       
-      <!-- Audio-Wellen um den Kopf -->
-      ${audioLevel > 0.1 ? `
-        <circle cx="100" cy="80" r="${40 + audioLevel * 30}" fill="none" stroke="#E74C3C" stroke-width="2" opacity="${0.3 - audioLevel * 0.2}"/>
-        <circle cx="100" cy="80" r="${50 + audioLevel * 40}" fill="none" stroke="#E74C3C" stroke-width="1" opacity="${0.2 - audioLevel * 0.15}"/>
+      <!-- Audio-Wellen um den Kopf - constrained to prevent overflow -->
+      ${constrainedAudioLevel > 0.1 ? `
+        <circle cx="100" cy="80" r="${waveRadius1}" fill="none" stroke="#E74C3C" stroke-width="2" opacity="${0.3 - constrainedAudioLevel * 0.2}"/>
+        <circle cx="100" cy="80" r="${waveRadius2}" fill="none" stroke="#E74C3C" stroke-width="1" opacity="${0.2 - constrainedAudioLevel * 0.15}"/>
       ` : ''}
     </svg>
   `;

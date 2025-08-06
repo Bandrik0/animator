@@ -105,32 +105,44 @@ const Stage2D = forwardRef<HTMLCanvasElement>((props, ref) => {
   };
 
   const [dimensions, setDimensions] = React.useState({ width: 800, height: 600 });
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
+    if (!containerRef.current) return;
+
     const updateDimensions = () => {
-      const sidebarWidth = 240; // 120px for each sidebar
-      const topBarHeight = 60;
-      const bottomBarHeight = 200; // Approximate height for timeline panels
+      if (!containerRef.current) return;
       
+      const rect = containerRef.current.getBoundingClientRect();
       setDimensions({
-        width: Math.max(400, window.innerWidth - sidebarWidth),
-        height: Math.max(300, window.innerHeight - topBarHeight - bottomBarHeight)
+        width: Math.max(400, rect.width),
+        height: Math.max(300, rect.height)
       });
     };
 
     updateDimensions();
+    
+    const resizeObserver = new ResizeObserver(updateDimensions);
+    resizeObserver.observe(containerRef.current);
+    
     window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
+    
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', updateDimensions);
+    };
   }, []);
 
   return (
-    <Stage ref={ref as any} width={dimensions.width} height={dimensions.height} options={{ backgroundColor: 0x1e1e1e }}>
-      {/* Background */}
-      {bgUrl && (
-        <Sprite image={bgUrl} x={0} y={0} width={dimensions.width} height={dimensions.height} />
-      )}
-      {sprites.map(renderCharacter)}
-    </Stage>
+    <div ref={containerRef} className="w-full h-full">
+      <Stage ref={ref as any} width={dimensions.width} height={dimensions.height} options={{ backgroundColor: 0x1e1e1e }}>
+        {/* Background */}
+        {bgUrl && (
+          <Sprite image={bgUrl} x={0} y={0} width={dimensions.width} height={dimensions.height} />
+        )}
+        {sprites.map(renderCharacter)}
+      </Stage>
+    </div>
   );
 });
 
