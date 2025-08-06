@@ -12,8 +12,8 @@ const Sidebar2D: React.FC = () => {
   const robotCharacters = spriteCharacters.filter(char => char.type === 'robot');
 
   return (
-    <aside className="w-60 bg-white/10 backdrop-blur text-white p-4 space-y-4 h-full overflow-y-auto">
-      <h2 className="text-xl font-semibold">Charaktere</h2>
+    <aside className="w-60 bg-white/10 backdrop-blur text-white p-4 space-y-4 h-full overflow-y-auto flex-shrink-0">
+      <h2 className="text-lg font-semibold">Charaktere</h2>
       
       {/* Avatar Charaktere */}
       <div>

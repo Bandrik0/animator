@@ -17,16 +17,16 @@ const ExportPanel: React.FC = () => {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg m-2">
-      <h3 className="text-lg font-semibold mb-4">Export</h3>
+    <div className="bg-white/10 backdrop-blur text-white p-3 h-full overflow-y-auto">
+      <h3 className="text-md font-semibold mb-3">Export</h3>
       
       {/* Format-Auswahl */}
-      <div className="space-y-2 mb-4">
-        <label className="block text-sm font-medium">Format</label>
-        <div className="flex gap-2">
+      <div className="space-y-1 mb-3">
+        <label className="block text-xs font-medium">Format</label>
+        <div className="flex gap-1">
           <button
             onClick={() => setExportFormat('webm')}
-            className={`px-3 py-1 rounded text-sm transition-colors ${
+            className={`px-2 py-1 rounded text-xs transition-colors ${
               exportFormat === 'webm' ? 'bg-blue-600' : 'bg-white/20 hover:bg-white/30'
             }`}
           >
@@ -34,7 +34,7 @@ const ExportPanel: React.FC = () => {
           </button>
           <button
             onClick={() => setExportFormat('mp4')}
-            className={`px-3 py-1 rounded text-sm transition-colors ${
+            className={`px-2 py-1 rounded text-xs transition-colors ${
               exportFormat === 'mp4' ? 'bg-blue-600' : 'bg-white/20 hover:bg-white/30'
             }`}
           >
@@ -42,7 +42,7 @@ const ExportPanel: React.FC = () => {
           </button>
           <button
             onClick={() => setExportFormat('gif')}
-            className={`px-3 py-1 rounded text-sm transition-colors ${
+            className={`px-2 py-1 rounded text-xs transition-colors ${
               exportFormat === 'gif' ? 'bg-blue-600' : 'bg-white/20 hover:bg-white/30'
             }`}
           >

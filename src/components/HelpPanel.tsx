@@ -13,20 +13,20 @@ const HelpPanel: React.FC = () => {
     'getting-started': (
       <div className="space-y-4">
         <div>
-          <h4 className="font-medium mb-2">1. Charakter hinzufügen</h4>
-          <p className="text-sm text-white/80">Wähle einen Charakter aus der linken Sidebar und klicke darauf.</p>
+          <h4 className="font-medium mb-1 text-xs">1. Charakter hinzufügen</h4>
+          <p className="text-xs text-white/80">Wähle einen Charakter aus der linken Sidebar und klicke darauf.</p>
         </div>
         <div>
-          <h4 className="font-medium mb-2">2. Audio aufnehmen</h4>
-          <p className="text-sm text-white/80">Klicke auf den Mikrofon-Button bei einem Charakter und sprich.</p>
+          <h4 className="font-medium mb-1 text-xs">2. Audio aufnehmen</h4>
+          <p className="text-xs text-white/80">Klicke auf den Mikrofon-Button bei einem Charakter und sprich.</p>
         </div>
         <div>
-          <h4 className="font-medium mb-2">3. Charakter bewegen</h4>
-          <p className="text-sm text-white/80">Ziehe Charaktere mit der Maus oder nutze die Pfeiltasten in der Eigenschaften-Sidebar.</p>
+          <h4 className="font-medium mb-1 text-xs">3. Charakter bewegen</h4>
+          <p className="text-xs text-white/80">Ziehe Charaktere mit der Maus oder nutze die Pfeiltasten in der Eigenschaften-Sidebar.</p>
         </div>
         <div>
-          <h4 className="font-medium mb-2">4. Animation abspielen</h4>
-          <p className="text-sm text-white/80">Klicke auf "Play All" um alle Audio-Clips abzuspielen.</p>
+          <h4 className="font-medium mb-1 text-xs">4. Animation abspielen</h4>
+          <p className="text-xs text-white/80">Klicke auf "Play All" um alle Audio-Clips abzuspielen.</p>
         </div>
       </div>
     ),
@@ -86,26 +86,26 @@ const HelpPanel: React.FC = () => {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur text-white p-4 rounded-lg m-2">
-      <h3 className="text-lg font-semibold mb-4">Hilfe & Tipps</h3>
+    <div className="bg-white/10 backdrop-blur text-white p-3 h-full overflow-y-auto">
+      <h3 className="text-md font-semibold mb-3">Hilfe & Tipps</h3>
       
       {/* Tabs */}
-      <div className="flex gap-1 mb-4">
+      <div className="flex gap-1 mb-3">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
-            className={`px-3 py-1 rounded text-sm transition-colors ${
+            className={`px-2 py-1 rounded text-xs transition-colors ${
               activeTab === tab.id ? 'bg-blue-600' : 'bg-white/20 hover:bg-white/30'
             }`}
           >
-            {tab.icon} {tab.label}
+            {tab.icon}
           </button>
         ))}
       </div>
 
       {/* Content */}
-      <div className="max-h-64 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto">
         {content[activeTab]}
       </div>
 
