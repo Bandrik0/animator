@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { spriteCharacters } from '../data/characters2d';
+import { spriteCharacters, SpriteCharacterDef } from '../data/characters2d';
 import { backgrounds } from '../data/backgrounds';
 import { useSpriteStore } from '../store2d';
 import SpriteLine from './SpriteLine';
@@ -11,18 +11,15 @@ interface Sidebar2DProps {
 const Sidebar2D: React.FC<Sidebar2DProps> = ({ className = '' }) => {
   const addSprite = useSpriteStore((s) => s.addSprite);
   const sprites = useSpriteStore((s) => s.sprites);
-  const select = useSpriteStore((s) => s.select);
   const [activeTab, setActiveTab] = useState<'characters' | 'backgrounds' | 'recorded'>('characters');
 
-  const handleAddCharacter = (char: any) => {
+  const handleAddCharacter = (char?: SpriteCharacterDef) => {
     const newSpriteId = addSprite(char);
-    // Auto-select the new character
-    if (newSpriteId) {
-      select(newSpriteId);
-    }
-    // Auto-scroll to recorded tab to see the new character
+    // Auto-switch to recorded tab to see the new character
+    setActiveTab('recorded');
     setTimeout(() => {
-      setActiveTab('recorded');
+      const el = document.getElementById(`sprite-${newSpriteId}`);
+      el?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 100);
   };
 
@@ -240,10 +237,20 @@ const Sidebar2D: React.FC<Sidebar2DProps> = ({ className = '' }) => {
       {activeTab === 'recorded' && (
         <div className="space-y-3">
           <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-            <h3 className="text-sm font-medium text-white/90 mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
-              Aufgenommene Charaktere ({sprites.length})
-            </h3>
+            <div className="mb-3 flex items-center justify-between">
+              <h3 className="text-sm font-medium text-white/90 flex items-center gap-2">
+                <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                Aufgenommene Charaktere ({sprites.length})
+              </h3>
+              <button
+                onClick={() => handleAddCharacter()}
+                data-testid="add-character"
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-2xl"
+                title="Neuen Charakter in Szene einfügen"
+              >
+                ➕
+              </button>
+            </div>
             {sprites.length === 0 ? (
               <div className="text-center py-8 text-white/60">
                 <div className="text-4xl mb-2">🎭</div>

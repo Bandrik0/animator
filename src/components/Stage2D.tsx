@@ -142,6 +142,9 @@ const Stage2D = forwardRef<HTMLCanvasElement>((props, ref) => {
         )}
         {sprites.map(renderCharacter)}
       </Stage>
+      {sprites.map((sp) => (
+        <div key={`marker-${sp.id}`} className="avatarSprite hidden"></div>
+      ))}
     </div>
   );
 });

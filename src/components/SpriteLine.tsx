@@ -67,11 +67,12 @@ const SpriteLine: React.FC<{ sprite: SpriteInstance }> = ({ sprite }) => {
   const colors = getCharacterColor();
 
   return (
-    <div 
+    <div
+      id={`sprite-${sprite.id}`}
       data-testid="sprite-line"
       className={`p-3 rounded-lg overflow-hidden transition-all duration-200 cursor-pointer border ${
-        isSelected 
-          ? 'bg-gradient-to-r from-white/20 to-white/10 ring-2 ring-yellow-400 ring-offset-2 ring-offset-gray-800 shadow-lg' 
+        isSelected
+          ? 'bg-gradient-to-r from-white/20 to-white/10 ring-2 ring-yellow-400 ring-offset-2 ring-offset-gray-800 shadow-lg'
           : 'bg-gradient-to-r from-white/10 to-white/5 hover:from-white/15 hover:to-white/10 border-white/20 hover:border-white/30'
       }`}
       onClick={() => selectSprite(sprite.id)}

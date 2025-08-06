@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { nanoid } from 'nanoid';
-import { SpriteCharacterDef } from './data/characters2d';
+import { SpriteCharacterDef, spriteCharacters } from './data/characters2d';
 
 export interface Clip {
   id: string;
@@ -19,7 +19,7 @@ export interface SpriteInstance {
 
 interface SpriteState {
   sprites: SpriteInstance[];
-  addSprite: (def: SpriteCharacterDef) => string;
+  addSprite: (def?: SpriteCharacterDef) => string;
   updateSprite: (id: string, p: Partial<SpriteInstance>) => void;
   deleteSprite: (id: string) => void;
   addClip: (id: string, url: string) => void;
@@ -35,21 +35,23 @@ interface SpriteState {
 export const useSpriteStore = create<SpriteState>((set) => ({
   sprites: [],
   addSprite: (def) => {
+    const usedDef = def || spriteCharacters[0];
     const id = nanoid();
     const newSprite = {
       id,
-      def,
+      def: usedDef,
       x: Math.max(400, (window.innerWidth - 480) / 2), // Account for both sidebars
       y: Math.max(300, (window.innerHeight - 120) / 2),
       scale: 1,
       clips: [],
       audioLevel: 0,
     };
-    
+
     set((s) => ({
       sprites: [...s.sprites, newSprite],
+      selectedId: id,
     }));
-    
+
     return id;
   },
   updateSprite: (id, p) =>
