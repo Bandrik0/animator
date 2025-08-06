@@ -30,6 +30,9 @@ const RobotCharacter: React.FC<RobotCharacterProps> = ({
   const eyeBlink = Math.sin(Date.now() * 0.02) > 0.8 ? 0 : 1;
   const antennaSwing = Math.sin(Date.now() * 0.015) * (audioLevel * 0.2);
 
+  // Constrain audio waves to prevent overflow
+  const constrainedAudioLevel = Math.min(audioLevel, 0.8);
+
   // SVG für Roboter-Charakter
   const characterSVG = `
     <svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
@@ -78,11 +81,11 @@ const RobotCharacter: React.FC<RobotCharacterProps> = ({
       <rect x="65" y="160" width="70" height="8" fill="#37474F" stroke="#263238" stroke-width="1" rx="4"/>
       <rect x="67" y="162" width="${66 * audioLevel}" height="4" fill="#4CAF50" rx="2"/>
       
-      <!-- Audio-Wellen - digital -->
-      ${audioLevel > 0.1 ? `
-        <rect x="85" y="50" width="30" height="${3 + audioLevel * 10}" fill="#FF5722" opacity="0.7"/>
-        <rect x="95" y="45" width="10" height="${5 + audioLevel * 15}" fill="#FF5722" opacity="0.7"/>
-        <rect x="105" y="40" width="10" height="${7 + audioLevel * 20}" fill="#FF5722" opacity="0.7"/>
+      <!-- Audio-Wellen - digital - constrained to prevent overflow -->
+      ${constrainedAudioLevel > 0.1 ? `
+        <rect x="85" y="50" width="30" height="${3 + constrainedAudioLevel * 8}" fill="#FF5722" opacity="0.7"/>
+        <rect x="95" y="45" width="10" height="${5 + constrainedAudioLevel * 12}" fill="#FF5722" opacity="0.7"/>
+        <rect x="105" y="40" width="10" height="${7 + constrainedAudioLevel * 15}" fill="#FF5722" opacity="0.7"/>
       ` : ''}
     </svg>
   `;

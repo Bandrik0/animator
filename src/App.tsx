@@ -13,21 +13,21 @@ const App: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
   return (
-    <div className="flex flex-col h-screen bg-gray-900">
-      <div className="p-2 flex gap-2">
+    <div className="flex flex-col h-screen bg-gray-900 overflow-hidden">
+      <div className="flex-shrink-0 p-2 flex gap-2">
         <MicControl />
         <RecordControl canvasRef={canvasRef} />
         <GlobalPlayButton />
       </div>
-      <div className="flex flex-1 min-w-0">
+      <div className="flex flex-1 min-h-0">
         <div className="flex-shrink-0 w-60">
           <Sidebar2D />
         </div>
-        <main className="flex-1 flex flex-col min-w-0">
-          <div className="flex-1 min-h-0">
+        <main className="flex-1 flex flex-col min-h-0 min-w-0">
+          <div className="flex-1 min-h-0 overflow-hidden">
             <Stage2D ref={canvasRef} />
           </div>
-          <div className="flex gap-2 overflow-x-auto">
+          <div className="flex-shrink-0 flex gap-2 overflow-x-auto">
             <div className="panel-container flex-shrink-0 w-80">
               <Timeline />
             </div>
