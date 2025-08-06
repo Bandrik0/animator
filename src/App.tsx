@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen bg-gray-900">
       <div className="p-2 flex gap-2">
         <MicControl />
         <RecordControl canvasRef={canvasRef} />
